@@ -1,0 +1,76 @@
+<app-settings-page *ngIf="!taskId"></app-settings-page>
+<div class="row" *ngIf="!taskId"> 
+  <p *ngIf="!taskCollection.length">Нет доступных задач</p>   
+    <app-user-list  
+    *ngFor="let t of taskCollection | projectAllTasks : projectId"
+    [user] = "t"
+    ></app-user-list>
+</div>
+<div *ngIf="taskId">
+  <div class="row">
+      <form class="col s12" [formGroup]="form" (submit)="onSubmit(form.value)">
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="name" id="name" type="text" class="validate">
+            <label class="active" for="name">Наименование</label>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="id" id="id" type="text" class="validate">
+            <label class="active" for="id">Идентификатор</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="subject" id="subject" type="text" class="validate">
+            <label class="active" for="subject">Предмет</label>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="status" id="status" type="text" class="validate">
+            <label class="active" for="status">Статус</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="description" id="description" type="text" class="validate">
+            <label class="active" for="description">Описание</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="projectId" value ={{projectId}} id="projectId" type="text" class="validate">
+            <label class="active" for="projectId">Проект</label>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="sprintId" id="sprintId" type="text" class="validate">
+            <label class="active" for="sprintId">Спринт</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="priority" id="priority" type="text" class="validate">
+            <label class="active" for="priority">Приоритет</label>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="estimateTimeSec" id="estimateTimeSec" type="text" class="validate">
+            <label class="active" for="estimateTimeSec">Предположительно затрат</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input formControlName="executor" id="executor" type="text" class="validate">
+            <label class="active" for="executor">Исполнитель</label>
+          </div>
+          <div class="input-field col s6">
+            <input formControlName="creator" id="creator" type="text" class="validate">
+            <label class="active" for="creator">Создал</label>
+          </div>
+        </div>
+        <button *ngIf="taskId == 'new'" class="btn waves-effect waves-light" type="submit" name="action" (click)="createTask(form.value)">Создать
+          <i class="material-icons right">send</i>
+        </button>  
+        <button *ngIf="taskId != 'new'" class="btn waves-effect waves-light" type="submit" name="action" (click)="saveTask(form.value)">Сохранить
+          <i class="material-icons right">send</i>
+        </button>               
+      </form>   
+    </div>
+</div>            

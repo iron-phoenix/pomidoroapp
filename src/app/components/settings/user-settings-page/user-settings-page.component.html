@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col s3">
+    <ul class="collection with-header">
+      <div class="collection-header"><h4>Рабочие часы в спринт</h4></div>
+      <div class="collection-item">
+        <div>
+          <!--<input *ngFor="let p of projectTimeCollection" [ngValue]="p.time">{{p.name}}-->
+          <label>Проект1</label>
+          <input value="количество часов" (change)="console.log(value)" >          
+        </div>      
+        <div>
+          <label>Проект2</label>      
+          <input value="количество часов">          
+        </div>
+        <div>          
+          <label>Проект3</label>
+          <input value="количество часов">      
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>
+<app-settings-page *ngIf="!userId"></app-settings-page>
+<div class="row" *ngIf="!userId">    
+  <app-user-list  
+  *ngFor="let u of userCollection"
+  [user] = "u"
+  ></app-user-list>
+</div>
+<div *ngIf="userId">
+<div class="row">  
+  <form class="col s8">    
+    <div class="row">      
+      <div class="input-field col s4">
+        <input [(ngModel)]="this.user.firstName" id="first_name" name="firstName" type="text" class="validate">
+        <label class="active" for="first_name">Имя</label>
+      </div>
+      <div class="input-field col s4">
+        <input [(ngModel)]="this.user.lastName" id="last_name"  name="lastName" type="text" class="validate">
+        <label class="active" for="last_name">Фамилия</label>
+      </div>
+    </div>    
+    <div class="row">
+      <div class="input-field col s4">
+        <input [(ngModel)]="this.user.userName"id="login" type="text"  name="login" class="validate">
+        <label class="active" for="login">Логин</label>
+      </div>
+      <div class="input-field col s4">
+          <input [(ngModel)]="this.user.password"id="password" type="password" name="password" class="validate" placeholder="******">
+          <label class="active" for="password">Пароль</label>
+        </div>
+    </div>
+    <div class="row" *ngIf="userId != 'new'">  
+        <div class="input-field col s4"></div>      
+        <div class="input-field col s4">
+            <input [(ngModel)]="this.user.newPassword" id="newPassword" type="password" name="newPassword" class="validate" >
+            <label class="active" for="newPassword">Новый пароль</label>
+          </div>
+      </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input [(ngModel)]="this.user.email" name="email" id="email" type="email" class="validate">
+        <label class="active" for="email">Email</label>
+      </div>
+      <div class="input-field col s2">
+          <input [(ngModel)]="this.user.phoneNumber" name="phoneNumber" id="phone" type="text" class="validate">
+          <label class="active" for="phoneNumber">Телефон</label>
+        </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+        <input [(ngModel)]="this.user.birthday" name="birthday" id="birthday" type="text" class="validate">
+        <label class="active" for="birthday">День рождения</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+          <input disabled  name="role" id="role" type="text" class="validate">
+          <label class="active" for="role">Роль</label>
+        </div>
+    </div>
+    <button *ngIf="userId == 'new'" class="btn waves-effect waves-light" type="submit" name="action" (click)="createUser()">Создать
+      <i class="material-icons right">send</i>
+    </button>  
+    <button *ngIf="userId != 'new'" class="btn waves-effect waves-light" type="submit" name="action" (click)="saveUser()">Сохранить
+      <i class="material-icons right">send</i>
+    </button>      
+  </form>
+  <div class="col s3">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{user.avatarUri}}">        
+      </div>      
+      <div class="card-action">
+        <a (click)="showInputAvatar()">Сменить аватар</a>
+        <input [(ngModel)]="this.user.avatarUri" *ngIf="inputAvatar" name="avatarUri" id="avatarUri" type="text" (blur)="showInputAvatar()">
+      </div>
+    </div>
+  </div>
+  <div class="col s3">
+    <ul class="collection with-header">
+      <div class="collection-header"><h4>Рабочие часы в спринт</h4></div>
+      <div class="collection-item">
+        <div *ngFor="let p of projectTimeCollection">
+          <input value="p.time" (change)="setTime(p.id, p.value)"><label>{{p.name}}</label>          
+        </div>
+      </div>      
+    </ul>              
+  </div>
+</div>
+            

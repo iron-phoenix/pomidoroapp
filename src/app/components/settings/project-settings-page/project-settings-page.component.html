@@ -1,0 +1,70 @@
+<app-settings-page *ngIf="!projectId"></app-settings-page>
+<div class="row" *ngIf="!projectId">
+  <app-project-list  
+  *ngFor="let p of projectCollection | activeProjects"
+  [project] = "p"
+  ></app-project-list>
+</div>
+<div *ngIf="projectId">
+  <div class="row col">
+    <form class="col l8 s12" name="projectForm">     
+      <div class="row">      
+        <div class="input-field col l6 s12">
+          <input  [(ngModel)]="this.project.name" value="{{project.name}}" name="name" id="first_name" type="text" class="validate">
+          <label class="active" for="first_name">Наименование проекта</label>
+        </div>
+        <div class="input-field col l6 s12">
+            <input disabled value="{{project.createdAt}}" name="startDate" id="start_date" type="text" class="validate">
+            <label class="active" for="start_date">Дата создания</label>
+          </div>
+      </div>
+      <div class="row">
+          <div class="input-field col l6 s12">
+            <select [(ngModel)]="this.project.defaultSprintLengthSec" name="sprintLength" style="display: block" (ngModelChange)="setSprint($event)">
+              <option value="604800" name="oneweek">Одна неделя</option>
+              <option value="1209600" name="twoweeks">Две недели</option>
+              <option value="1814400" name="treeweeks">Три недели</option>              
+            </select>
+            <label class="active" for="disabled">Длина спринта</label>
+          </div>
+        </div>
+      <div class="row">
+        <div class="input-field col l6 s12">
+          <input [(ngModel)]="this.project.id" value="{{project.id}}" name="id" id="disabled" type="text" class="validate">
+          <label class="active" for="disabled">Идентификатор проекта</label>
+        </div>
+      </div>
+      <div *ngIf="projectId ==='new'">
+        <button class="btn waves-effect waves-light" type="submit" name="action" (click)="createProject()">Создать
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+      <div *ngIf="projectId !=='new' ">
+        <button class="btn waves-effect waves-light" type="submit" name="action" (click)="saveProject()">Сохранить
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+    <div class="table col l4 s12">
+      <ul class="collection with-header">
+          <li class="collection-header">
+            <div><p>Пользователи</p></div>
+            <div class="settings">
+              <a class="btn-edit btn-Small blue-grey darken-1" (click)="selectUser()"><i class="material-icons">add</i></a>
+              <a class="btn-edit btn-Small blue-grey darken-1"><i class="material-icons">delete</i></a>
+              <a class="btn-edit btn-Small blue-grey darken-1"><i class="material-icons">edit</i></a>
+            </div>
+          </li>          
+          <app-user-list
+          *ngFor="let u of projectUsersCollection" 
+          [user] = "u.userName"
+          ></app-user-list>
+          <li class="addUser" *ngIf="addUser">
+            <select [(ngModel)]="user" style="display: block" (ngModelChange)="addUserToProject($event)">
+              <option *ngFor="let u of allUsers | addUserToProject: projectUsersCollection" [ngValue]="u">{{u.userName}}</option>
+            </select>
+          </li>
+      </ul>      
+    </div>
+  </div>
+</div>

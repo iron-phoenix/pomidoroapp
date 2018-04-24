@@ -1,0 +1,36 @@
+ a.collection-item.cust {
+    border-bottom: solid !important;
+    border-width: 1px !important;
+    border-color: #ccc !important;
+}
+a:last-child {
+    border-bottom: none !important;
+}
+
+.marked {
+    z-index: 10;
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+
+.card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+    transition: .5s all; //это свойство придает плавности
+    z-index: 10; 
+    transform: scale(1.1) 
+}
+
+.card {
+    height: 250px;
+    width: auto;
+}
+.card-image {
+    height: 75%;
+    overflow: hidden;
+}
+
+.card-image img{
+    max-height: 200px;  
+    width: auto;
+    margin: auto;
+}

@@ -1,0 +1,25 @@
+<!-- Dropdown Structure -->
+<app-info-message></app-info-message>
+<ul id="dropdown1" class="dropdown-content" (mouseleave)="hiddenDropDown()">
+  <li><a routerLink="usersSettings" class="collection-item">Пользователи</a></li>
+  <li><a routerLink="projectSettings" class="collection-item">Проекты</a></li>
+  <li><a routerLink="roleSetings" class="collection-item">Роли</a></li>
+  <!--<li class="divider"></li>  это подчеркивание -->
+</ul>
+  <nav>
+    <div class="nav-wrapper row">
+      <div class="nav-wrapper-child col s8">
+        <a href="#" id="brand-logo">TFS18 tracker</a>
+        <app-tomato *ngIf="isAuth"></app-tomato>
+      </div>
+      <ul class="right hide-on-med-and-down" *ngIf="isAuth">
+        <li><a routerLink="">Главная</a></li>
+        <!-- <li><a routerLink="settings">Настройка</a></li> -->
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#" (mouseover)="showDroprown()">Настройки<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="сontainer">
+  <router-outlet></router-outlet>  
+</div>

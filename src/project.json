@@ -1,0 +1,10 @@
+{
+    "id": "1",
+    "name": "Проект1",
+    "dateStart": "07.04.2018",
+    "dateFinish": null,
+    "relise": "10.04.2018",
+    "oldRelises": [],
+    "discription": "Первый проект, отбражается так то",
+    "users": ["maximec","kirill","some_guy", "ivan_gay","katty_perry"]    
+}

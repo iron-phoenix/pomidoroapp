@@ -1,0 +1,23 @@
+<div id="msg" class="hidden">
+<div class="info-msg">
+    <div class="msgHead">{{msg.type}}
+    </div>
+    <div class="msgTitle">{{msg.title}}
+    </div>
+    <div class="msgContent">{{msg.discription}}
+    </div>
+    <div class="msgBtns">
+    </div>
+    <div class="msgButtons" *ngIf="(msg.type === 1 || msg.type === 3)">
+        <a class="waves-effect waves-light btn" (click)="this.msgService.setMsg(1, null, null); this.msgService.hiddenMsg()">Ок</a>
+    </div>
+    <div class="row" class="twoBtns" *ngIf="msg.type==2">
+        <div class="msgButtons">
+            <a class="waves-effect waves-light btn" (click)="msg.okFunc(); this.msgService.hiddenMsg()">Ок</a>
+        </div>
+        <div class="msgButtons">
+            <a class="waves-effect waves-light btn" (click)="this.msgService.setMsg(1, null, null); this.msgService.hiddenMsg()">Отмена</a>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,25 @@
+.сontainer {
+    padding: 40px;
+    position: relative;
+}
+
+.dropdown-content {
+    opacity: 100;
+    left: auto;
+    right: 0px;
+}
+.brand-logo {
+    padding-left: 10px;
+}
+.nav-wrapper-child {
+    max-width: 60%;
+    height: 100%;
+    display: flex;
+}
+#brand-logo  {
+    position: relative;
+    color: #fff;
+    display: inline-block;
+    font-size: 2.1rem;
+    padding: 0;
+}

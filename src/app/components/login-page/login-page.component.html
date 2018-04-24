@@ -1,0 +1,34 @@
+<div class="row">
+    <form action="#" class="col s6" name="loginForm" [formGroup]="loginForm" (submit)="sendLoginData(loginForm.value)">
+        <div class="input-field">      
+            <div class="input-field">
+                <input id="login" type="text" formControlName="login" name="login">
+                <label class="active" for="login">Login</label>
+            </div>
+            <app-input-errors [field]="loginForm.get('login')"></app-input-errors>
+            <div class="input-field">
+                <input id="password" type="password" class="validate" formControlName="password" name="password">
+                <label class="active" for="password">Password</label>
+            </div>
+            <app-input-errors [field]="loginForm.get('password')"></app-input-errors>
+            <button class="btn btn-lg btn-primary btn-block"
+                type="submit"
+                [disabled]="loginForm.invalid || inProcess" >Войти
+            </button>
+        </div>
+    </form>
+</div>
+<!-- <div class="authForm">
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="login" type="text">
+            <label class="active" for="login">Login</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s6">
+            <input id="password" type="password" class="validate">
+            <label class="active" for="password">Password</label>
+        </div>
+    </div>
+</div>                 -->

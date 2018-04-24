@@ -1,0 +1,17 @@
+<div class='settings'*ngIf="usersSettingsWindow">
+    <div class="col l2 m6">
+        <div class="card" id="{{user.id}}" (click)="marked()" [ngClass]="{'marked' : isMarked}">
+            <div class="card-image">
+                <img src="{{user.avatarUri}}">                
+            </div>            
+            <div class="card-action">
+                <a (click) = "openUser(user.id)">{{user.userName}}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='list' *ngIf="!usersSettingsWindow">
+    <a class="collection-item cust">{{user}}</a>
+</div>
+ 
+
